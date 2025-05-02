@@ -1,2 +1,4 @@
 .idea
 venv
+build
+src/endura_sdk.egg-info

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "endura-sdk"
 version = "0.1.0"
-description = "Trust layer SDK for Edge AI devices"
+description = "Trust layer SDK for Edge AI models"
 authors = [
     { name="Michael Kirschbaum", email="hi@michaelkirschbaum.com" }
 ]
