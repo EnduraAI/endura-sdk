@@ -7,7 +7,7 @@ name = "endura-sdk"
 version = "0.1.0"
 description = "Trust layer SDK for Edge AI models"
 authors = [
-    { name="Michael Kirschbaum", email="hi@michaelkirschbaum.com" }
+    { name="EnduraAI", email="hi@michaelkirschbaum.com" }
 ]
 dependencies = [
     "torch>=2.0",
