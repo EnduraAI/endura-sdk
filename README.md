@@ -18,10 +18,8 @@ For devices with Docker support, you can run the SDK inside a Docker container. 
 
 2. **Run the Docker container** (this will install the package and run the main script):
    ```bash
-   docker run --rm -v $(pwd):/app endura-sdk pip install /app
+   docker run --rm endura-sdk
    ```
-
-   This will install the SDK from the `/app` directory inside the container and run the provided `main.py` script.
 
 ### **2. Install Locally (for Development or Python Users)**
 
@@ -102,6 +100,6 @@ If you want to contribute or develop the SDK further:
 
 ---
 
-## **License**
+## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under a custom license. See the LICENSE file for more details.
