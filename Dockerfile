@@ -2,14 +2,8 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    gcc \
-    python3-dev \
-    libffi-dev \
-    && rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir endura-sdk
 
-COPY . /app
-
-RUN pip install --no-cache-dir -r requirements.txt
+COPY src/main.py /app/src/main.py
 
 CMD ["python", "/app/src/main.py"]
