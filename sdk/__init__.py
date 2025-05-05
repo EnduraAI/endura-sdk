@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="sdk-sdk",
+    name="sdk",
     version="0.1.0",
     description="Trust layer SDK for Edge AI devices",
     author="Michael Kirschbaum",

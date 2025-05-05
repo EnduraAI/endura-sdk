@@ -1,11 +1,11 @@
-class EnduraAgent:
-    def __init__(self, model_path: str):
-        self.model_meta = self.get_model_metadata(model_path)
+import psutil
 
-    def get_model_metadata(self, filepath: str):
+class DeviceAgent:
+    def __init__(self, model):
+        self.model = model
+
+    def get_status(self):
         return {
-            "name": "pytorch.pt",
-            "version": "1.0.0",
-            "framework": "pytorch",
-            "hash": "fake_hash"
+            "cpu": psutil.cpu_percent(),
+            "memory": psutil.virtual_memory().percent
         }
