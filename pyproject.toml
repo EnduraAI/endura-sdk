@@ -10,7 +10,7 @@ authors = [
     { name="EnduraAI", email="hi@michaelkirschbaum.com" }
 ]
 dependencies = [
-    "torch>=2.0",
-    "psutil"
+    "torch>=2.0,<3.0",
+    "psutil>=5.9.8,<6.0"
 ]
 requires-python = ">=3.7"

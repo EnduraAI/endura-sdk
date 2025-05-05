@@ -7,8 +7,8 @@ setup(
     author="EnduraAI",
     author_email="hi@michaelkirschbaum.com",
     url="https://github.com/yourusername/endura-sdk",
-    packages=find_packages(where="src"),
-    package_dir={"": "src"},
+    packages=find_packages(where="sdk"),
+    package_dir={"": "sdk"},
     install_requires=[
         "torch>=2.0",
         "psutil",
