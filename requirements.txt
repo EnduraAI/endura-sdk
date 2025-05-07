@@ -1,0 +1,3 @@
+endura-sdk
+fastapi
+uvicorn

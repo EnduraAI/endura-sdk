@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "endura-sdk"
-version = "0.1.0"
-description = "Trust layer SDK for Edge AI models"
+version = "0.1.2"
+description = "SDK for Edge AI Device Agent"
 authors = [
     { name="EnduraAI", email="hi@michaelkirschbaum.com" }
 ]
@@ -15,3 +15,7 @@ dependencies = [
     "numpy"
 ]
 requires-python = ">=3.7"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sdk"]

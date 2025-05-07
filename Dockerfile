@@ -2,13 +2,13 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-COPY device/requirements.txt /app/
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY sdk /app/sdk
-COPY device /app/device
+COPY main.py /app/main.py
+# COPY sdk /app/sdk
 
-WORKDIR /app/device
+# ENV PYTHONPATH=/app
 
 EXPOSE 8000
 

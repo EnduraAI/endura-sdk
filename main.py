@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-import torch
 from sdk.agent import DeviceAgent
+import torch
 
 app = FastAPI()
 
@@ -12,7 +12,7 @@ model = TestModel()
 agent = DeviceAgent(model)
 
 @app.get("/")
-def root():
+def read_root():
     return {"message": "Device API is running."}
 
 @app.get("/status")

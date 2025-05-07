@@ -1,3 +1,0 @@
-endura-sdk==0.1.0
-fastapi
-uvicorn[standard]
