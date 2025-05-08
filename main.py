@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from sdk.agent import DeviceAgent
 import torch
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI()
+Instrumentator().instrument(app).expose(app)
 
 class TestModel(torch.nn.Module):
     def forward(self, x):
