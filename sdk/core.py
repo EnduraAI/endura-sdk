@@ -5,8 +5,7 @@ import time
 import os
 import uuid
 import requests
-from config import BACKEND_URL
-from config import DEVICE_ID_FILE
+from . import config
 
 def get_status(model):
     return {
@@ -31,19 +30,19 @@ def get_model_metadata(model):
     }
 
 def get_device_id():
-    if os.path.exists(DEVICE_ID_FILE):
-        with open(DEVICE_ID_FILE, 'r') as f:
+    if os.path.exists(config.DEVICE_ID_FILE):
+        with open(config.DEVICE_ID_FILE, 'r') as f:
             return f.read().strip()
     else:
         new_id = str(uuid.uuid4())
-        with open(DEVICE_ID_FILE, 'w') as f:
+        with open(config.DEVICE_ID_FILE, 'w') as f:
             f.write(new_id)
         return new_id
 
 def post_status(model):
     status = get_status(model)
     try:
-        response = requests.post(BACKEND_URL, json=status)
+        response = requests.post(config.BACKEND_URL, json=status)
         response.raise_for_status()
         return response.json()
     except requests.RequestException as e:

@@ -16,7 +16,6 @@ services:
       - ./sdk:/app/sdk
       - device-data:/app/data
 
-
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -42,3 +41,6 @@ services:
 networks:
   monitoring:
     driver: bridge
+
+volumes:
+  device-data:
