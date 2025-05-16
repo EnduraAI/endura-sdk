@@ -42,7 +42,8 @@ def get_device_id():
 def post_status(model):
     status = get_status(model)
     try:
-        response = requests.post(config.BACKEND_URL, json=status)
+        url = config.BACKEND_URL.rstrip('/') + '/status'
+        response = requests.post(url, json=status)
         response.raise_for_status()
         return response.json()
     except requests.RequestException as e:

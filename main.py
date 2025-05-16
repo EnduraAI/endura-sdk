@@ -20,3 +20,7 @@ def read_root():
 @app.get("/status")
 def get_status():
     return agent.get_status()
+
+@app.get("/post_status")
+def post_status():
+    return agent.post_status()
