@@ -2,7 +2,11 @@ import platform
 import psutil
 import socket
 import time
+import os
 import uuid
+import requests
+from config import BACKEND_URL
+from config import DEVICE_ID_FILE
 
 def get_status(model):
     return {
@@ -27,5 +31,20 @@ def get_model_metadata(model):
     }
 
 def get_device_id():
-    # Use persistent unique identifier logic later (e.g., UUID stored on device)
-    return str(uuid.getnode())  # MAC address fallback
+    if os.path.exists(DEVICE_ID_FILE):
+        with open(DEVICE_ID_FILE, 'r') as f:
+            return f.read().strip()
+    else:
+        new_id = str(uuid.uuid4())
+        with open(DEVICE_ID_FILE, 'w') as f:
+            f.write(new_id)
+        return new_id
+
+def post_status(model):
+    status = get_status(model)
+    try:
+        response = requests.post(BACKEND_URL, json=status)
+        response.raise_for_status()
+        return response.json()
+    except requests.RequestException as e:
+        return {"error": str(e)}
