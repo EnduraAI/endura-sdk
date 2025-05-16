@@ -14,6 +14,8 @@ services:
     cpus: 0.5
     volumes:
       - ./sdk:/app/sdk
+      - device-data:/app/data
+
 
   prometheus:
     image: prom/prometheus
