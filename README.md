@@ -13,12 +13,12 @@ For devices with Docker support, you can run the SDK inside a Docker container. 
 
 1. **Build the Docker image**:
    ```bash
-   docker build -t endura-sdk .
+   docker build -t endura-endura_sdk .
    ```
 
 2. **Run the Docker container** (this will install the package and run the main script):
    ```bash
-   docker run --rm endura-sdk
+   docker run --rm endura-endura_sdk
    ```
 
 ### **2. Install Locally (for Development or Python Users)**
@@ -28,7 +28,7 @@ If you’re running this on a device with Python installed, you can install the 
 1. **Clone or download the repository**:
    ```bash
    git clone https://github.com/yourusername/endura-sdk.git
-   cd endura-sdk
+   cd endura-endura_sdk
    ```
 
 2. **Install dependencies** (make sure to use a virtual environment):
@@ -69,7 +69,7 @@ agent.log_inference(input_data, output_data)
 To run the SDK via Docker, you can directly interact with the containerized version:
 
 ```bash
-docker run --rm endura-sdk
+docker run --rm endura-endura_sdk
 ```
 
 This command runs the SDK inside the Docker container, using the `main.py` file inside the container as the entry point.
@@ -83,7 +83,7 @@ If you want to contribute or develop the SDK further:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/yourusername/endura-sdk.git
-   cd endura-sdk
+   cd endura-endura_sdk
    ```
 
 2. **Install dependencies** in a virtual environment (recommended):

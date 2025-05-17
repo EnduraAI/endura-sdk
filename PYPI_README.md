@@ -11,7 +11,7 @@ The **Endura SDK** provides a trust layer for edge AI models, allowing you to se
 Once the SDK is installed, you can import and use it in your Python code:
 
 ```python
-from endura import EnduraAgent
+from endura_sdk import EnduraAgent
 
 # Initialize with your model path
 agent = EnduraAgent("path_to_model.pth")

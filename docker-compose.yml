@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: endura-sdk-device
+    container_name: endura-endura_sdk-device
     ports:
       - "8000:8000"
     expose:
@@ -14,7 +14,7 @@ services:
     cpus: 0.5
     volumes:
       - device-data:/app/data
-      # - ./sdk:/app/sdk
+      # - ./endura_sdk:/app/endura_sdk
 
   prometheus:
     image: prom/prometheus

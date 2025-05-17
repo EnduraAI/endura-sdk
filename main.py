@@ -1,12 +1,12 @@
 from fastapi import FastAPI
-from sdk.agent import DeviceAgent
-from sdk.model import TestModel
+from endura_sdk import EnduraAgent, TestModel
 from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI()
 Instrumentator().instrument(app).expose(app)
+
 model = TestModel()
-agent = DeviceAgent(model)
+agent = EnduraAgent(model)
 
 @app.get("/")
 def read_root():
