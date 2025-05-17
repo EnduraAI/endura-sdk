@@ -17,5 +17,5 @@ from endura import EnduraAgent
 agent = EnduraAgent("path_to_model.pth")
 
 # Log an inference event
-agent.log_inference(input_data, output_data)
+agent.log_inference(input_data)
 ```
