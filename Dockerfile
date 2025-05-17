@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y gcc python3-dev
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY main.py /app/main.py
-COPY sdk /app/sdk
+# COPY sdk /app/sdk
 
 RUN mkdir -p /app/data
 

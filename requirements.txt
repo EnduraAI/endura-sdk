@@ -1,4 +1,4 @@
-endura-sdk==0.1.1
+endura-sdk
 fastapi==0.109.0
 uvicorn==0.21.0
 prometheus-fastapi-instrumentator==7.1.0
