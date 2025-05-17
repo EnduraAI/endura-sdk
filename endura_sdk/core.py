@@ -7,7 +7,6 @@ from . import config
 
 def get_status(model):
     return {
-        "device_id": get_device_id(),
         "timestamp": time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
         "cpu": psutil.cpu_percent(interval=1),
         "memory": psutil.virtual_memory().percent
@@ -40,8 +39,8 @@ def get_device_id():
 def post_status(model):
     status = get_status(model)
     try:
-        url = config.BACKEND_URL.rstrip('/') + '/status'
-        response = requests.post(url, json=status)
+        url = f"{config.BACKEND_URL.rstrip()}/status/{get_device_id()}"
+        response = requests.put(url, json=status)
         response.raise_for_status()
         return response.json()
     except requests.RequestException as e:
