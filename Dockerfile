@@ -11,8 +11,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY main.py /app/main.py
 # COPY endura_sdk /app/endura_sdk
 
-ENV PYTHONPATH=/app/src
-
 RUN mkdir -p /app/data
 
 EXPOSE 8000
