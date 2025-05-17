@@ -1,6 +1,4 @@
-import platform
 import psutil
-import socket
 import time
 import os
 import uuid
@@ -9,16 +7,16 @@ from . import config
 
 def get_status(model):
     return {
-        "timestamp": int(time.time()),
-        "hostname": socket.gethostname(),
         "device_id": get_device_id(),
-        "os": platform.system(),
-        "os_version": platform.version(),
-        "cpu_usage": f"{psutil.cpu_percent(interval=1)}%",
-        "memory_usage": f"{psutil.virtual_memory().percent}%",
-        "disk_usage": f"{psutil.disk_usage('/').percent}%",
-        "uptime_seconds": int(time.time() - psutil.boot_time()),
-        "model": get_model_metadata(model)
+        "timestamp": time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
+        "cpu": psutil.cpu_percent(interval=1),
+        "memory": psutil.virtual_memory().percent
+        # "hostname": socket.gethostname(),
+        # "os": platform.system(),
+        # "os_version": platform.version(),
+        # "disk_usage": f"{psutil.disk_usage('/').percent}%",
+        # "uptime_seconds": int(time.time() - psutil.boot_time()),
+        # "model": get_model_metadata(model)
     }
 
 def get_model_metadata(model):
