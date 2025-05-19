@@ -1,11 +1,10 @@
 from endura_sdk.app import config
 import psutil
 import time
-import os
 import uuid
 import logging
-import socket
 import platform
+import os
 
 logger = logging.getLogger(__name__)
 

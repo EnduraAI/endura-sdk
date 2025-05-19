@@ -54,6 +54,10 @@ class DeviceAgent:
             }
 
     async def run_status_loop(self, interval=60):
+        if not config.STATUS_LOOP_ENABLED:
+            logger.info("Status loop is disabled in configuration.")
+            return
+
         logger.info(f"Starting periodic status updates every {interval} seconds.")
         while True:
             result = await self.post_status()
