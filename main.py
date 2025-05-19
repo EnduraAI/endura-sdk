@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from endura_sdk.app import EnduraAgent, TestModel
+from endura_sdk import EnduraAgent, TestModel
 from prometheus_fastapi_instrumentator import Instrumentator
 import asyncio
 

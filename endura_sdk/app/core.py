@@ -1,9 +1,9 @@
+from endura_sdk.app import config
 import psutil
 import time
 import os
 import uuid
 import logging
-from endura_sdk.app import config
 
 logger = logging.getLogger(__name__)
 
