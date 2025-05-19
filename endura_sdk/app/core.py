@@ -3,7 +3,7 @@ import time
 import os
 import uuid
 import logging
-from . import config
+from endura_sdk.app import config
 
 logger = logging.getLogger(__name__)
 

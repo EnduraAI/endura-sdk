@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-from endura_sdk import EnduraAgent, TestModel
+from endura_sdk.app import EnduraAgent, TestModel
 from prometheus_fastapi_instrumentator import Instrumentator
+import asyncio
 
 app = FastAPI()
 Instrumentator().instrument(app).expose(app)
@@ -22,6 +23,4 @@ async def post_status():
 
 @app.on_event("startup")
 async def startup_event():
-    # Launch the status loop in the background
-    import asyncio
     asyncio.create_task(agent.run_status_loop(interval=60))

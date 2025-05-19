@@ -1,4 +1,5 @@
-from .core import get_status, get_device_id, config
+from endura_sdk.app.core import get_status, get_device_id
+from endura_sdk.app import config
 import httpx
 import logging
 import asyncio
