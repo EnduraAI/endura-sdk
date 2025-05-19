@@ -1,5 +1,5 @@
 from unittest.mock import AsyncMock, MagicMock
-from endura_sdk import DeviceAgent
+from endura_sdk.app.agent import DeviceAgent
 
 def test_device_agent_initialization():
     agent = DeviceAgent()
