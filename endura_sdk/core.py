@@ -2,21 +2,25 @@ import psutil
 import time
 import os
 import uuid
-import requests
+import logging
 from . import config
 
+logger = logging.getLogger(__name__)
+
 def get_status(model):
-    return {
+    status = {
         "timestamp": time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
         "cpu": psutil.cpu_percent(interval=1),
-        "memory": psutil.virtual_memory().percent
         # "hostname": socket.gethostname(),
         # "os": platform.system(),
         # "os_version": platform.version(),
         # "disk_usage": f"{psutil.disk_usage('/').percent}%",
         # "uptime_seconds": int(time.time() - psutil.boot_time()),
-        # "model": get_model_metadata(model)
+        "memory": psutil.virtual_memory().percent
     }
+    if model:
+        status["model"] = get_model_metadata(model)
+    return status
 
 def get_model_metadata(model):
     return {
@@ -27,21 +31,15 @@ def get_model_metadata(model):
     }
 
 def get_device_id():
-    if os.path.exists(config.DEVICE_ID_FILE):
-        with open(config.DEVICE_ID_FILE, 'r') as f:
-            return f.read().strip()
-    else:
-        new_id = str(uuid.uuid4())
-        with open(config.DEVICE_ID_FILE, 'w') as f:
-            f.write(new_id)
-        return new_id
-
-def post_status(model):
-    status = get_status(model)
     try:
-        url = f"{config.BACKEND_URL.rstrip()}/status/{get_device_id()}"
-        response = requests.put(url, json=status)
-        response.raise_for_status()
-        return response.json()
-    except requests.RequestException as e:
-        return {"error": str(e)}
+        if os.path.exists(config.DEVICE_ID_FILE):
+            with open(config.DEVICE_ID_FILE, 'r') as f:
+                return f.read().strip()
+        else:
+            new_id = str(uuid.uuid4())
+            with open(config.DEVICE_ID_FILE, 'w') as f:
+                f.write(new_id)
+            return new_id
+    except OSError as e:
+        logger.exception("Failed to get or create device ID")
+        return str(uuid.uuid4())
