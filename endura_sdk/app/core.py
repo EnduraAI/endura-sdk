@@ -4,6 +4,8 @@ import time
 import os
 import uuid
 import logging
+import socket
+import platform
 
 logger = logging.getLogger(__name__)
 
@@ -13,6 +15,7 @@ def get_status(model):
         "cpu": psutil.cpu_percent(interval=1),
         # "hostname": socket.gethostname(),
         # "os": platform.system(),
+        # "arch": platform.machine(),
         # "os_version": platform.version(),
         # "disk_usage": f"{psutil.disk_usage('/').percent}%",
         # "uptime_seconds": int(time.time() - psutil.boot_time()),
@@ -43,3 +46,11 @@ def get_device_id():
     except OSError as e:
         logger.exception("Failed to get or create device ID")
         return str(uuid.uuid4())
+
+def is_valid_device():
+    cpu_arch = platform.machine()
+    if cpu_arch not in {"armv7l", "aarch64"}:
+        return False
+    if os.getenv("IS_EDGE") != "true":
+        return False
+    return True
