@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
-# Try Docker path first, then local
+# Try Docker first, then local
 docker_env_path = Path("/app/.env")
 local_env_path = Path(__file__).resolve().parent.parent.parent / ".env"
 

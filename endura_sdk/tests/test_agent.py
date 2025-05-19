@@ -46,3 +46,22 @@ async def test_post_status(monkeypatch):
     monkeypatch.setattr("httpx.AsyncClient", lambda *a, **kw: async_client_mock)
     result = await agent.post_status()
     assert result == {"message": "ok"}
+
+@pytest.mark.asyncio
+async def test_post_status_handles_500(monkeypatch):
+    agent = DeviceAgent()
+    monkeypatch.setattr("endura_sdk.app.core.get_status", lambda model=None: {"cpu": 99})
+    monkeypatch.setattr("endura_sdk.app.core.get_device_id", lambda: "abc-123")
+
+    class FakeResponse:
+        status_code = 500
+        text = "Internal Error"
+        def raise_for_status(self): raise httpx.HTTPStatusError("500 error", request=None, response=self)
+        async def aread(self): return b"internal server error"
+
+    async_client = AsyncMock()
+    async_client.__aenter__.return_value.put.return_value = FakeResponse()
+    monkeypatch.setattr(httpx, "AsyncClient", lambda *a, **kw: async_client)
+
+    result = await agent.post_status()
+    assert result["error"] == "HTTP 500"

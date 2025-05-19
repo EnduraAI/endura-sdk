@@ -34,7 +34,8 @@ class DeviceAgent:
             url = f"{config.BACKEND_URL.rstrip()}/status/{get_device_id()}"
             logger.debug(f"Posting status to {url}: {status}")
             async with httpx.AsyncClient() as client:
-                response = await client.put(url, json=status)
+                headers = {"Authorization": f"Bearer {config.API_KEY}"} if config.API_KEY else {}
+                response = await client.put(url, json=status, headers=headers)
             response.raise_for_status()
             logger.debug(f"Response from server: {response.text}")
             return response.json()
@@ -55,7 +56,11 @@ class DeviceAgent:
 
     async def run_status_loop(self, interval=60):
         if not config.STATUS_LOOP_ENABLED:
-            logger.info("Status loop is disabled in configuration.")
+            logger.info("Status loop disabled by config.")
+            return
+
+        if not config.API_KEY:
+            logger.warning("No API key configured — not starting status loop.")
             return
 
         logger.info(f"Starting periodic status updates every {interval} seconds.")
