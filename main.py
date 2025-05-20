@@ -2,12 +2,18 @@ from fastapi import FastAPI
 from endura_sdk import EnduraAgent, TestModel
 from prometheus_fastapi_instrumentator import Instrumentator
 import asyncio
+import logging
 
 app = FastAPI()
 Instrumentator().instrument(app).expose(app)
 
 model = TestModel()
 agent = EnduraAgent(model)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+)
 
 @app.get("/")
 def read_root():
