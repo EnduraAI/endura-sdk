@@ -1,3 +1,2 @@
-# endura_sdk package
-from .agent import DeviceAgent as EnduraAgent
-from .model import TestModel
+from .app.agent import DeviceAgent as EnduraAgent
+from .app.model import TestModel

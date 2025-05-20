@@ -14,6 +14,7 @@ services:
     cpus: 0.5
     volumes:
       - device-data:/app/data
+      - .env:/app/.env
       # - ./endura_sdk:/app/endura_sdk
 
   prometheus:
