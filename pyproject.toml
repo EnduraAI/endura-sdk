@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "endura-sdk"
-version = "0.1.8"
+version = "0.1.9"
 description = "SDK for Edge AI Device Agent"
 readme = "PYPI_README.md"
 authors = [
@@ -27,4 +27,4 @@ dev = [
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["endura_sdk"]
+include = ["endura_sdk", "endura_sdk.*"]
